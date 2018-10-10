@@ -86,12 +86,11 @@ fun timeForHalfWay(t1: Double, v1: Double,
                    t3: Double, v3: Double): Double {
     var res: Double
     var s = (t1 * v1 + t2 * v2 + t3 * v3)/ 2.0;
-    if ((t1 * v1 < s)&&(s < (t1 * v1 + t2 * v2)))
-    res = t1 + ((s - (t1 * v1)) / v2)
-    else if ((((t1 * v1) + (t2 * v2) < s)&&(s < (t1 * v1) + (t2 * v2) + (t3 * v3))))
-    res = t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
-    else res= s / v1
-return res}
+    when {((t1 * v1 < s)&&(s < (t1 * v1 + t2 * v2))) -> res = t1 + ((s - (t1 * v1)) / v2)
+    ((((t1 * v1) + (t2 * v2) < s)&&(s < (t1 * v1) + (t2 * v2) + (t3 * v3)))) -> res = t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
+    else -> res= s / v1}
+        return res
+}
 
 /**
  * Простая
@@ -106,22 +105,11 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
     var craft = 0
-    var folomei = 1
-    var thunder = 2
-    var face = 3
-    if ((kingX != rookX1) && (kingX != rookX2) && (kingY != rookY1) && (kingY != rookY2)) {
-        return craft
-    }
-    if (((kingX == rookX1) || (kingY == rookY1)) && ((kingX == rookX2) || (kingY == rookY2))) {
-        return face}
-    if ((kingX == rookX1) || (kingY == rookY1)) {
-        return folomei
-    }
-    if ((kingX == rookX2) || (kingY == rookY2)) {
-        return thunder
-    }
-    return face
+    if ((kingX == rookX1) || (kingY == rookY1)) craft += 1
+    if ((kingX == rookX2) || (kingY == rookY2)) craft += 2
+    return craft
 }
+
 
     /**
  * Простая
@@ -135,12 +123,12 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int{
-        var a=0
-        if((kingX==rookX)||(kingY==rookY)) a+=1
-        if ((abs(kingX - bishopX)) == (abs(kingY - bishopY))) a+=2
-        return a
-    }
+                          bishopX: Int, bishopY: Int): Int {
+    var a = 0
+    if ((kingX == rookX) || (kingY == rookY)) a += 1
+    if ((abs(kingX - bishopX)) == (abs(kingY - bishopY))) a += 2
+    return a
+}
 
 
 /**
@@ -151,15 +139,7 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int{
-    var fo=-1
-    var alfa= (-sqr(a)+ sqr(b)+ sqr(c)/(2*b*c))
-    when {(cos(alfa)<0.000000) ->fo+=1}
-    when {cos(alfa)==0.000000 ->fo+=2 }
-    when {(cos(alfa)>0.000000)->fo+=3}
-
-    return fo
-}
+fun triangleKind(a: Double, b: Double, c: Double): Int= TODO()
 
 /**
  * Средняя
