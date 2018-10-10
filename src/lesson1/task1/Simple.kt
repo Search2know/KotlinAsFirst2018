@@ -68,7 +68,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*3600+ minutes*6
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = sagenes*48*4.445/100+arshins*16*4.45/100+vershoks*4.445/100
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = (sagenes*48*4.445/100)+(arshins*16*4.45/100)+(vershoks*4.445/100)
 /**
  * Тривиальная
  *
@@ -91,10 +91,10 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt(s
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int {var p=number/100
-    var o=p%10
-    return o
-}
+fun thirdDigit(number: Int): Int =((number/ 100)%10)
+
+
+
 
 /**
  * Простая
@@ -103,7 +103,8 @@ fun thirdDigit(number: Int): Int {var p=number/100
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = (hoursArrive*60+minutesArrive)-(hoursDepart*60+minutesDepart)
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int =
+        (hoursArrive * 60 + minutesArrive) - (hoursDepart * 60 + minutesDepart)
 
 /**
  * Простая
@@ -122,7 +123,7 @@ fun accountInThreeYears(initial: Int, percent: Int): Double = initial*pow(1+perc
  */
 fun numberRevert(number: Int): Int  {
     val i = (number / 100)
-    val w = (number - i * 100) / 10
-    val q = (number - 10 * w - i * 100)
+    val w = number / 10 % 10
+    val q = number % 10
     return 100 * q + 10 * w + i
 }
