@@ -64,11 +64,11 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String=
-    when{
-    (age%100 in 11..14)-> "$age лет"
-    (age%10==1)->"$age год"
-    ((age%10)in 2..4)->"$age года"
-    else -> "$age лет"
+        when {
+            (age % 100 in 11..14) -> "$age лет"
+            (age % 10 == 1) -> "$age год"
+            ((age % 10) in 2..4) -> "$age года"
+            else -> "$age лет"
 
 }
 
@@ -85,11 +85,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
                    t3: Double, v3: Double): Double {
     var res: Double
-    var s = (t1 * v1 + t2 * v2 + t3 * v3)/ 2.0;
-    when {((t1 * v1 < s)&&(s < (t1 * v1 + t2 * v2))) -> res = t1 + ((s - (t1 * v1)) / v2)
-    ((((t1 * v1) + (t2 * v2) < s)&&(s < (t1 * v1) + (t2 * v2) + (t3 * v3)))) -> res = t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
-    else -> res= s / v1}
-        return res
+    var s = (t1 * v1 + t2 * v2 + t3 * v3) / 2.0;
+    when {((t1 * v1 < s) && (s < (t1 * v1 + t2 * v2))) -> res = t1 + ((s - (t1 * v1)) / v2)
+        ((((t1 * v1) + (t2 * v2) < s) && (s < (t1 * v1) + (t2 * v2) + (t3 * v3)))) -> res = t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
+        else -> res = s / v1
+    }
+    return res
 }
 
 /**
@@ -149,8 +150,9 @@ fun triangleKind(a: Double, b: Double, c: Double): Int= TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int{
-    var mup=(min(b,d)-max(a,c))
-    if(mup<0)  mup = -1
-return mup}
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    var mup = (min(b, d) - max(a, c))
+    if (mup < 0) mup = -1
+    return mup
+}
 
