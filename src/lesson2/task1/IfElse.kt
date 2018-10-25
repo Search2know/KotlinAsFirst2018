@@ -84,13 +84,12 @@ fun ageDescription(age: Int): String=
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
                    t3: Double, v3: Double): Double {
-    var res: Double
     var s = (t1 * v1 + t2 * v2 + t3 * v3) / 2.0;
-    when {((t1 * v1 < s) && (s < (t1 * v1 + t2 * v2))) -> res = t1 + ((s - (t1 * v1)) / v2)
-        ((((t1 * v1) + (t2 * v2) < s) && (s < (t1 * v1) + (t2 * v2) + (t3 * v3)))) -> res = t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
-        else -> res = s / v1
+    return when {((t1 * v1 < s) && (s < (t1 * v1 + t2 * v2))) -> t1 + ((s - (t1 * v1)) / v2)
+        ((((t1 * v1) + (t2 * v2) < s) && (s < (t1 * v1) + (t2 * v2) + (t3 * v3))))
+        -> t1 + t2 + ((s - ((t1 * v1) + (t2 * v2))) / v3)
+        else -> s / v1
     }
-    return res
 }
 
 /**
