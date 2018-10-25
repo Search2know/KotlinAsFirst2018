@@ -66,9 +66,9 @@ fun daysInMonth(month: Int, year: Int): Int = when {
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
                  x2: Double, y2: Double, r2: Double): Boolean {
-    var f = sqrt(sqr(y2 - y1) + sqr(x2 - x1))
-    return if (r2 >= f + r1) true
-    else false
+    val f = sqrt(sqr(y2 - y1) + sqr(x2 - x1))
+    return  (r2 >= f + r1)
+
 }
 
 /**
