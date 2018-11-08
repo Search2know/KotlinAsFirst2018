@@ -237,7 +237,8 @@ fun convert(n: Int, base: Int): List<Int> {
         l.add(f % base)
         f /= base
     }
-    return l.reversed()
+    return if (l.isEmpty()) listOf()
+    else l.reversed()
 }
 
 /**
@@ -255,7 +256,8 @@ fun convertToString(n: Int, base: Int): String {
         else quotes += "$i"
 
     }
-    return quotes
+    return if (quotes.isEmpty()) "0"
+    else quotes
 }
 
 /**
@@ -267,7 +269,7 @@ fun convertToString(n: Int, base: Int): String {
  */
 fun decimal(digits: List<Int>, base: Int): Int {
     var f = 0
-    for (i in 0 until digits.size - 1) {
+    for (i in 0 until digits.size) {
         f += digits[i] * pow(base.toDouble(), (digits.size - i - 1).toDouble()).toInt()
     }
     return f
