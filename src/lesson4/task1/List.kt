@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson3.task1.isPrime
 import java.lang.Math.pow
 import kotlin.math.sqrt
 
@@ -123,10 +124,9 @@ fun abs(v: List<Double>): Double = sqrt(v.sumByDouble { it * it })
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double {
-    return if (list.isEmpty()) 0.0
-    else (list.sum() / list.size)
-}
+fun mean(list: List<Double>): Double = if (list.isEmpty()) 0.0
+else (list.sum() / list.size)
+
 
 /**
  * Средняя
@@ -137,9 +137,9 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    val d = list.sum() / list.size
+    val f= mean(list)
     for (i in 0 until list.size) {
-        list[i] -= d
+        list[i] -= f
     }
     return list
 }
@@ -204,7 +204,7 @@ fun factorize(n: Int): List<Int> {
     var o = 2
     val f = mutableListOf<Int>()
     while (n1 > 1) {
-        if (n1 % o == 0) {
+        if (isPrime(o) && n1 % o == 0) {
             n1 /= o
             f.add(o)
         } else
@@ -245,7 +245,7 @@ fun convert(n: Int, base: Int): List<Int> {
  * Сложная
  *
  * Перевести заданное целое число n >= 0 в систему счисления с основанием 1 < base < 37.
- * Результат перевода вернуть в виде строки, цифры более 9 представлять латинскими
+ * Результат перевода вернуть в виде строки, цифры бол ее 9 представлять латинскими
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
@@ -259,6 +259,7 @@ fun convertToString(n: Int, base: Int): String {
     return if (quotes.isEmpty()) "0"
     else quotes
 }
+
 
 /**
  * Средняя
