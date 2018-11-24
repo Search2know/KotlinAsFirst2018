@@ -5,6 +5,7 @@ package lesson4.task1
 import lesson1.task1.discriminant
 import lesson3.task1.isPrime
 import java.lang.Math.pow
+import java.lang.StringBuilder
 import kotlin.math.sqrt
 
 /**
@@ -204,7 +205,7 @@ fun factorize(n: Int): List<Int> {
     var o = 2
     val f = mutableListOf<Int>()
     while (n1 > 1) {
-        if (isPrime(o) && n1 % o == 0) {
+        if (n1 % o == 0) {
             n1 /= o
             f.add(o)
         } else
@@ -250,15 +251,15 @@ fun convert(n: Int, base: Int): List<Int> {
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
 fun convertToString(n: Int, base: Int): String {
-    var quotes = ""
+    val quotes = StringBuilder()
     for (i in convert(n, base)) {
-        if (i > 9) quotes += ('a' - 10 + i).toString()
-        else quotes += "$i"
-
+        if (i > 9) quotes.append('a' - 10 + i)
+        else quotes.append("$i")
     }
     return if (quotes.isEmpty()) "0"
-    else quotes
+    else quotes.toString()
 }
+
 
 
 /**
