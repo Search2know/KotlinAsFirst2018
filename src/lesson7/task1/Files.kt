@@ -2,7 +2,10 @@
 
 package lesson7.task1
 
+import org.omg.CORBA.INTERNAL
 import java.io.File
+import javax.lang.model.element.Name
+import java.lang.ArrayStoreException
 
 /**
  * Пример
@@ -54,7 +57,17 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    val s = mutableMapOf<String, Int>()
+    val f = File(inputName).bufferedReader().readLines().joinToString("\n") { it.toLowerCase() }
+       for (i in 0 until substrings.size){
+        s[substrings[i]] = substrings[i].toLowerCase().toRegex().findAll(f).count()
+    }
+    return s
+}
+
+
+
 
 
 /**
