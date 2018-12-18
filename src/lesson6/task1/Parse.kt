@@ -52,12 +52,10 @@ fun main(args: Array<String>) {
         val seconds = timeStrToSeconds(line)
         if (seconds == -1) {
             println("Введённая строка $line не соответствует формату ЧЧ:ММ:СС")
-        }
-        else {
+        } else {
             println("Прошло секунд с начала суток: $seconds")
         }
-    }
-    else {
+    } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
 }
@@ -74,17 +72,20 @@ fun main(args: Array<String>) {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
+
+
 fun dateStrToDigit(str: String): String {
-    val f = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
+    val months = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
             "сентября", "октября", "ноября", "декабря")
-    var v = ""
-    val p = str.split(" ")
+    var quotes = ""
+    val splitter = str.split(" ")
     var i = 0
-    if (p.size == 3) v = p[1] else return ""
-    if ( f.indexOf(v) in 1..12) i = f.indexOf(v) + 1
+    val day1 = splitter[0].toIntOrNull() ?: return ""
+    if (splitter.size == 3) quotes = splitter[1] else return ""
+    if (months.indexOf(quotes) in 0..12) i = months.indexOf(quotes) + 1
     else return ""
-    if (p[0].toInt() > daysInMonth(i, p[2].toInt())) return ""
-    return String.format("%02d.%02d.%d", p[0].toInt(), i, p[2].toInt())
+    if (splitter[0].toIntOrNull()!! > daysInMonth(i, splitter[2].toInt())) return ""
+    return String.format("%02d.%02d.%d", day1, i, splitter[2].toInt())
 }
 
 /**
@@ -98,17 +99,15 @@ fun dateStrToDigit(str: String): String {
  * входными данными.
  */
 fun dateDigitToStr(digital: String): String {
-    val f = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
+    val month = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
             "сентября", "октября", "ноября", "декабря")
     var v = ""
-    val p = digital.split(".")
-    try {
-        if (p[1].toInt() in 1..12 && p.size == 3) v = f[p[1].toInt() - 1] else return ""
-        if (p[0].toInt() > daysInMonth(p[1].toInt(), p[2].toInt())) return ""
-        return String.format("%d %s %d", p[0].toInt(), v, p[2].toInt())
-    } catch (e: NumberFormatException) {
-        return ""
-    }
+    val splitter = digital.split(".")
+    val day1 = splitter[0].toIntOrNull() ?: return ""
+    if (splitter[1].toInt() in 1..12 && splitter.size == 3) v = month[splitter[1].toInt() - 1] else return ""
+    if (day1!! > daysInMonth(splitter[1].toInt(), splitter[2].toInt())) return ""
+    return String.format("%d %s %d", day1, v, splitter[2].toInt())
+
 }
 
 
@@ -124,7 +123,8 @@ fun dateDigitToStr(digital: String): String {
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String= TODO()
+
 
 /**
  * Средняя
