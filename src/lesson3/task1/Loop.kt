@@ -3,6 +3,8 @@
 package lesson3.task1
 
 
+import lesson1.task1.sqr
+import java.lang.Math.pow
 import kotlin.math.floor
 import kotlin.math.sqrt
 
@@ -183,7 +185,7 @@ fun collatzSteps(x: Int): Int {
     var count = 0
     while (l != 1) {
         if (l % 2 == 0) l /= 2
-        else l =1 + 3 * l
+        else l = 1 + 3 * l
         count++
     }
     return count
@@ -257,7 +259,17 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var f = 0
+    var o = 1
+    var square = 0
+    while (n > f) {
+        square = sqr(o)
+        f += digitNumber(square)
+        o++
+    }
+    return (square / pow(10.0, (f - n).toDouble()).toInt() % 10)
+}
 
 
 /**
