@@ -5,6 +5,7 @@ package lesson4.task1
 import lesson1.task1.discriminant
 import java.lang.Math.pow
 import java.lang.StringBuilder
+import java.util.*
 import kotlin.math.sqrt
 
 /**
@@ -258,7 +259,6 @@ fun convertToString(n: Int, base: Int): String {
     return if (quotes.isEmpty()) "0"
     else quotes.toString()
 }
-
 
 
 /**
