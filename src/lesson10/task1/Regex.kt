@@ -136,3 +136,5 @@ class Parser(private val groups: List<String>) {
 
     private val operationMap = mapOf("+" to PLUS, "-" to MINUS, "*" to TIMES, "/" to DIV)
 }
+
+ val c = parseExpr()
